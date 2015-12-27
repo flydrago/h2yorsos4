@@ -20,7 +20,7 @@ import com.h2y.util.PropertiesUtil;
 
 /**
  * 基础Controller
- * 作者：段晓刚
+ * 作者：段晓刚  
  * 时间：2014-3-8 下午3:11:48
  * 电子邮件：@qq.com
  * Gmail :
