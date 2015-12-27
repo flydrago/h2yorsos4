@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IOrderGoodsRtDaoW">
+
+	<insert id="add" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_order_goods_rt 
+		</selectKey>  
+		insert into tb_order_goods_rt
+		(
+		order_id,
+		order_no,
+		order_unique,
+		storehouse_id,
+		storehouse_name,
+		goods_nick_name,
+		goods_number,
+		goods_short_number,
+		goods_count,
+		goods_amount,
+		single_price,
+		create_date,
+		goods_price_id,
+		goods_price_version,
+		is_gift,
+		data_id,
+		buy_type,
+		s3stcode,
+		s3gdscode,
+		is_comment,
+		is_activity,
+		activity_goods_id
+		)
+		values (
+		#{orderId,jdbcType=BIGINT},
+		#{orderNo,jdbcType=VARCHAR},
+		#{orderUnique,jdbcType=VARCHAR},
+		#{storehouseId,jdbcType=BIGINT},
+		#{storehouseName,jdbcType=VARCHAR},
+		#{goodsNickName,jdbcType=VARCHAR},
+		#{goodsNumber,jdbcType=VARCHAR},
+		#{goodsShortNumber,jdbcType=VARCHAR},
+		#{goodsCount,jdbcType=INTEGER},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{singlePrice,jdbcType=DOUBLE},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{goodsPriceId,jdbcType=BIGINT},
+		#{goodsPriceVersion,jdbcType=INTEGER},
+		#{isGift,jdbcType=INTEGER},
+		#{dataId,jdbcType=BIGINT},
+		#{buyType,jdbcType=INTEGER},
+		#{s3stcode,jdbcType=VARCHAR},
+		#{s3gdscode,jdbcType=VARCHAR},
+		#{isComment,jdbcType=INTEGER},
+		#{isActivity,jdbcType=INTEGER},
+		#{activityGoodsId,jdbcType=BIGINT}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		update tb_order_goods_rt
+		set
+		order_id = #{orderId,jdbcType=BIGINT},
+		order_no = #{orderNo,jdbcType=VARCHAR},
+		order_unique = #{orderUnique,jdbcType=VARCHAR},
+		storehouse_id = #{storehouseId,jdbcType=BIGINT},
+		storehouse_name = #{storehouseName,jdbcType=VARCHAR},
+		goods_nick_name = #{goodsNickName,jdbcType=VARCHAR},
+		goods_number = #{goodsNumber,jdbcType=VARCHAR},
+		goods_short_number = #{goodsShortNumber,jdbcType=VARCHAR},
+		goods_count = #{goodsCount,jdbcType=INTEGER},
+		goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+		single_price = #{singlePrice,jdbcType=DOUBLE},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		goods_price_id = #{goodsPriceId,jdbcType=BIGINT},
+		goods_price_version = #{goodsPriceVersion,jdbcType=INTEGER},
+		is_gift = #{isGift,jdbcType=INTEGER},
+		data_id = #{dataId,jdbcType=BIGINT},
+		buy_type = #{buyType,jdbcType=INTEGER},
+		s3stcode = #{s3stcode,jdbcType=VARCHAR},
+		s3gdscode = #{s3gdscode,jdbcType=VARCHAR},
+		is_comment = #{isComment,jdbcType=INTEGER},
+		is_activity = #{isActivity,jdbcType=INTEGER},
+		activity_goods_id = #{activityGoodsId,jdbcType=BIGINT}
+		where id = #{id}
+	</update>
+	
+	<update id="updateComment" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		update tb_order_goods_rt
+		set
+		is_comment = 1
+		where order_no = #{orderNo} 
+		and goods_price_id = #{goodsPriceId}
+	</update>
+
+	<delete id="delete" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		delete from
+		tb_order_goods_rt
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_order_goods_rt
+		where
+		id = #{id} 
+	</delete>
+
+	<insert id="addBatch" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		insert into tb_order_goods_rt
+		(
+		order_id,
+		order_no,
+		order_unique,
+		storehouse_id,
+		storehouse_name,
+		goods_nick_name,
+		goods_number,
+		goods_short_number,
+		goods_count,
+		goods_amount,
+		single_price,
+		create_date,
+		goods_price_id,
+		goods_price_version,
+		is_gift,
+		data_id,
+		buy_type,
+		s3stcode,
+		s3gdscode,
+		is_comment,
+		is_activity,
+		activity_goods_id
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+        (
+			#{item.orderId,jdbcType=BIGINT},
+			#{item.orderNo,jdbcType=VARCHAR},
+			#{item.orderUnique,jdbcType=VARCHAR},
+			#{item.storehouseId,jdbcType=BIGINT},
+			#{item.storehouseName,jdbcType=VARCHAR},
+			#{item.goodsNickName,jdbcType=VARCHAR},
+			#{item.goodsNumber,jdbcType=VARCHAR},
+			#{item.goodsShortNumber,jdbcType=VARCHAR},
+			#{item.goodsCount,jdbcType=INTEGER},
+			#{item.goodsAmount,jdbcType=DOUBLE},
+			#{item.singlePrice,jdbcType=DOUBLE},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.goodsPriceId,jdbcType=BIGINT},
+			#{item.goodsPriceVersion,jdbcType=INTEGER},
+			#{item.isGift,jdbcType=INTEGER},
+			#{item.dataId,jdbcType=BIGINT},
+			#{item.buyType,jdbcType=INTEGER},
+			#{item.s3stcode,jdbcType=VARCHAR},
+			#{item.s3gdscode,jdbcType=VARCHAR},
+			#{item.isComment,jdbcType=INTEGER},
+			#{item.isActivity,jdbcType=INTEGER},
+			#{item.activityGoodsId,jdbcType=BIGINT}
+        )
+        </foreach>
+	</insert>
+	
+	<insert id="addHisBatch" parameterType="com.h2y.os.entity.OrderGoodsRt">
+		insert into tb_order_goods_rt_hi
+		(
+		id,
+		order_id,
+		order_no,
+		order_unique,
+		storehouse_id,
+		storehouse_name,
+		goods_nick_name,
+		goods_number,
+		goods_short_number,
+		goods_count,
+		goods_amount,
+		single_price,
+		create_date,
+		goods_price_id,
+		goods_price_version,
+		is_gift,
+		data_id,
+		buy_type,
+		s3stcode,
+		s3gdscode,
+		is_comment,
+		is_activity,
+		activity_goods_id
+		)
+		values
+		<foreach collection="list" item="item" separator=",">
+        (
+        	#{item.id,jdbcType=BIGINT},
+			#{item.orderId,jdbcType=BIGINT},
+			#{item.orderNo,jdbcType=VARCHAR},
+			#{item.orderUnique,jdbcType=VARCHAR},
+			#{item.storehouseId,jdbcType=BIGINT},
+			#{item.storehouseName,jdbcType=VARCHAR},
+			#{item.goodsNickName,jdbcType=VARCHAR},
+			#{item.goodsNumber,jdbcType=VARCHAR},
+			#{item.goodsShortNumber,jdbcType=VARCHAR},
+			#{item.goodsCount,jdbcType=INTEGER},
+			#{item.goodsAmount,jdbcType=DOUBLE},
+			#{item.singlePrice,jdbcType=DOUBLE},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.goodsPriceId,jdbcType=BIGINT},
+			#{item.goodsPriceVersion,jdbcType=INTEGER},
+			#{item.isGift,jdbcType=INTEGER},
+			#{item.dataId,jdbcType=BIGINT},
+			#{item.buyType,jdbcType=INTEGER},
+			#{item.s3stcode,jdbcType=VARCHAR},
+			#{item.s3gdscode,jdbcType=VARCHAR},
+			#{item.isComment,jdbcType=INTEGER},
+			#{item.isActivity,jdbcType=INTEGER},
+			#{item.activityGoodsId,jdbcType=BIGINT}
+        )
+        </foreach>
+	</insert>
+	
+	<delete id="deleteByOrderNo" parameterType="string">
+		delete from
+		tb_order_goods_rt
+		where
+		order_no = #{orderNo} 
+	</delete>
+	
+</mapper>

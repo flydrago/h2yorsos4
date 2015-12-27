@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.IOrderGoodsRtDaoR">
+
+	<resultMap type="com.h2y.os.entity.OrderGoodsRt" id="ordergoodsrtDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="orderId" column="order_id" javaType="long" jdbcType="BIGINT" />
+		<result property="orderNo" column="order_no" javaType="string" jdbcType="VARCHAR" />
+		<result property="orderUnique" column="order_unique" javaType="string" jdbcType="VARCHAR" />
+		<result property="storehouseId" column="storehouse_id" javaType="long" jdbcType="BIGINT" />
+		<result property="storehouseName" column="storehouse_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNickName" column="goods_nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsNumber" column="goods_number" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsShortNumber" column="goods_short_number" javaType="string" jdbcType="VARCHAR" />
+		<result property="goodsCount" column="goods_count" javaType="int" jdbcType="INTEGER" />
+		<result property="goodsAmount" column="goods_amount" javaType="double" jdbcType="DOUBLE" />
+		<result property="singlePrice" column="single_price" javaType="double" jdbcType="DOUBLE" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="goodsPriceId" column="goods_price_id" javaType="long" jdbcType="BIGINT" />
+		<result property="goodsPriceVersion" column="goods_price_version" javaType="int" jdbcType="INTEGER" />
+		<result property="isGift" column="is_gift" javaType="int" jdbcType="INTEGER" />
+		<result property="dataId" column="data_id" javaType="long" jdbcType="BIGINT" />
+		<result property="buyType" column="buy_type" javaType="int" jdbcType="INTEGER" />
+		<result property="s3stcode" column="s3stcode" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3gdscode" column="s3gdscode" javaType="string" jdbcType="VARCHAR" />
+		<result property="isActivity" column="is_activity" javaType="int" jdbcType="INTEGER" />
+		<result property="activityGoodsId" column="activity_goods_id" javaType="long" jdbcType="BIGINT" />
+	</resultMap>
+
+	<select id="getRowsByOrderNoAndGoodsPriceId" parameterType="hashmap"
+		resultType="long">
+		select count(id) from tb_order_goods_rt 
+		where order_no = #{orderNo} 
+		and goods_price_id = #{goodsPriceId}
+		and is_comment = 1
+	</select>
+	
+	
+	<select id="getListByOrderNo" parameterType="string" resultMap="ordergoodsrtDaoMap">
+		select * from tb_order_goods_rt where order_no = #{orderNo}
+	</select>
+	
+	
+	<select id="getValidListByOrderNo" parameterType="string" resultMap="ordergoodsrtDaoMap">
+		select * from tb_order_goods_rt where order_no = #{orderNo} and is_gift = 0
+	</select>
+	
+	<select id="getListByBuyType" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			org.goods_nick_name as goodsNickName,
+			org.goods_number as goodsNumber,
+			org.goods_short_number as goodsShortNumber,
+			org.goods_count as goodsCount,
+			org.goods_amount as goodsAmount,
+			org.single_price as singlePirce,
+			org.create_date as createDate,
+			org.goods_price_id as goodsPriceId,
+			org.goods_price_version as goodsPriceVersion,
+			org.is_gift as isGift			
+		FROM
+			tb_order_goods_rt org
+		WHERE
+			org.order_no = #{orderNo}
+		and org.buy_type = #{buyType}
+		union
+		SELECT
+			org.goods_nick_name as goodsNickName,
+			org.goods_number as goodsNumber,
+			org.goods_short_number as goodsShortNumber,
+			org.goods_count as goodsCount,
+			org.goods_amount as goodsAmount,
+			org.single_price as singlePirce,
+			org.create_date as createDate,
+			org.goods_price_id as goodsPriceId,
+			org.goods_price_version as goodsPriceVersion,
+			org.is_gift as isGift			
+		FROM
+			tb_order_goods_rt_hi org
+		WHERE
+			org.order_no = #{orderNo}
+		and org.buy_type = #{buyType}
+	</select>
+	
+	
+	<select id="getRowsByBuyType" parameterType="hashmap" resultType="long">
+		select count(og.id) from (
+		SELECT
+			org.id		
+		FROM
+			tb_order_goods_rt org
+		WHERE
+			org.order_no = #{orderNo}
+		and org.buy_type = #{buyType}
+		union all
+		SELECT
+			org.id
+		FROM
+			tb_order_goods_rt_hi org
+		WHERE
+			org.order_no = #{orderNo}
+		and org.buy_type = #{buyType}) og
+	</select>
+	
+</mapper>

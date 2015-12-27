@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.ICouponsUserRtDaoW">
+
+	<insert id="add" parameterType="com.h2y.os.entity.CouponsUserRt">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_coupons_user_rt 
+		</selectKey>  
+		insert into tb_coupons_user_rt
+		(
+		claim_code,
+		coupons_id,
+		coupons_code,
+		account,
+		status,
+		create_date,
+		use_date,
+		memo,
+		source_code,
+		order_no,
+		str_1,
+		str_2,
+		str_3,
+		date_1,
+		date_2,
+		int_1,
+		int_2,
+		double_1,
+		double_2
+		)
+		values (
+		#{claimCode,jdbcType=VARCHAR},
+		#{couponsId,jdbcType=BIGINT},
+		#{couponsCode,jdbcType=VARCHAR},
+		#{account,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{useDate,jdbcType=TIMESTAMP},
+		#{memo,jdbcType=VARCHAR},
+		#{sourceCode,jdbcType=VARCHAR},
+		#{orderNo,jdbcType=VARCHAR},
+		#{str1,jdbcType=VARCHAR},
+		#{str2,jdbcType=VARCHAR},
+		#{str3,jdbcType=VARCHAR},
+		#{date1,jdbcType=TIMESTAMP},
+		#{date2,jdbcType=TIMESTAMP},
+		#{int1,jdbcType=INTEGER},
+		#{int2,jdbcType=INTEGER},
+		#{double1,jdbcType=DOUBLE},
+		#{double2,jdbcType=DOUBLE}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.CouponsUserRt">
+		update tb_coupons_user_rt
+		set
+		claim_code = #{claimCode,jdbcType=VARCHAR},
+		coupons_id = #{couponsId,jdbcType=BIGINT},
+		coupons_code = #{couponsCode,jdbcType=VARCHAR},
+		account = #{account,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		use_date = #{useDate,jdbcType=TIMESTAMP},
+		memo = #{memo,jdbcType=VARCHAR},
+		source_code = #{sourceCode,jdbcType=VARCHAR},
+		order_no = #{orderNo,jdbcType=VARCHAR},
+		str_1 = #{str1,jdbcType=VARCHAR},
+		str_2 = #{str2,jdbcType=VARCHAR},
+		str_3 = #{str3,jdbcType=VARCHAR},
+		date_1 = #{date1,jdbcType=TIMESTAMP},
+		date_2 = #{date2,jdbcType=TIMESTAMP},
+		int_1 = #{int1,jdbcType=INTEGER},
+		int_2 = #{int2,jdbcType=INTEGER},
+		double_1 = #{double1,jdbcType=DOUBLE},
+		double_2 = #{double2,jdbcType=DOUBLE}
+		where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="com.h2y.os.entity.CouponsUserRt">
+		delete from
+		tb_coupons_user_rt
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_coupons_user_rt
+		where
+		id = #{id} 
+	</delete>
+	
+	
+	<delete id="deleteByIds">
+		delete from
+		tb_coupons_user_rt
+		where
+		id in
+		<foreach collection="list" item="id" open="(" separator=","
+			close=")"> #{id} 
+		</foreach>
+	</delete>
+	
+</mapper>

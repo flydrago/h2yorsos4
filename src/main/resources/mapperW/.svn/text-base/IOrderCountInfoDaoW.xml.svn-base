@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IOrderCountInfoDaoW">
+
+	<insert id="add" parameterType="com.h2y.os.entity.OrderCountInfo">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_order_count_info 
+		</selectKey>  
+		insert into tb_order_count_info
+		(
+		count_id,
+		create_date,
+		update_date,
+		order_count,
+		real_amount,
+		goods_amount,
+		coin_amount,
+		goods_transport_amount,
+		coupons_amount,
+		double1,
+		double2,
+		str1,
+		str2,
+		info_type
+		)
+		values (
+		#{countId,jdbcType=BIGINT},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{orderCount,jdbcType=INTEGER},
+		#{realAmount,jdbcType=DOUBLE},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{coinAmount,jdbcType=DOUBLE},
+		#{goodsTransportAmount,jdbcType=DOUBLE},
+		#{couponsAmount,jdbcType=DOUBLE},
+		#{double1,jdbcType=DOUBLE},
+		#{double2,jdbcType=DOUBLE},
+		#{str1,jdbcType=VARCHAR},
+		#{str2,jdbcType=VARCHAR},
+		#{infoType,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.OrderCountInfo">
+		update tb_order_count_info
+		set
+		count_id = #{countId,jdbcType=BIGINT},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		update_date = #{updateDate,jdbcType=TIMESTAMP},
+		order_count = #{orderCount,jdbcType=INTEGER},
+		real_amount = #{realAmount,jdbcType=DOUBLE},
+		goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+		coin_amount = #{coinAmount,jdbcType=DOUBLE},
+		goods_transport_amount = #{goodsTransportAmount,jdbcType=DOUBLE},
+		coupons_amount = #{couponsAmount,jdbcType=DOUBLE},
+		double1 = #{double1,jdbcType=DOUBLE},
+		double2 = #{double2,jdbcType=DOUBLE},
+		str1 = #{str1,jdbcType=VARCHAR},
+		str2 = #{str2,jdbcType=VARCHAR},
+		info_type = #{infoType,jdbcType=INTEGER}
+		where id = #{id}
+	</update>
+	
+</mapper>

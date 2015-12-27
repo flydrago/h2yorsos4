@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.read.ICommonDaoR">
+
+	<!-- 单位信息 -->
+	<resultMap type="com.h2y.os.entity.SysUnits" id="sysunitsDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitCode" column="unit_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="parentId" column="parent_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitDomain" column="unit_domain" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitName" column="unit_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="shortName" column="short_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="regDate" column="reg_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="stopDate" column="stop_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="userCount" column="user_count" javaType="long" jdbcType="BIGINT" />
+		<result property="unitStatus" column="unit_status" javaType="string" jdbcType="VARCHAR" />
+		<result property="adminUrl" column="admin_url" javaType="string" jdbcType="VARCHAR" />
+		<result property="portalUrl" column="portal_url" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitAddress" column="unit_address" javaType="string" jdbcType="VARCHAR" />
+		<result property="telAreaCode" column="tel_area_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="tel" column="tel" javaType="string" jdbcType="VARCHAR" />
+		<result property="telService" column="tel_service" javaType="string" jdbcType="VARCHAR" />
+		<result property="fax" column="fax" javaType="string" jdbcType="VARCHAR" />
+		<result property="legalPerson" column="legal_person" javaType="string" jdbcType="VARCHAR" />
+		<result property="legalPersonMobile" column="legal_person_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="s3ucode" column="s3ucode" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3uname" column="s3uname" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3createdate" column="s3createdate" javaType="date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<!-- 区域信息 -->
+	<resultMap type="com.h2y.os.entity.Zone" id="zoneDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="code" column="code" javaType="string" jdbcType="VARCHAR" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="pid" column="pid" javaType="string" jdbcType="VARCHAR" />
+		<result property="pcode" column="pcode" javaType="string" jdbcType="VARCHAR" />
+		<result property="preFix" column="pre_fix" javaType="string" jdbcType="VARCHAR" />
+		<result property="level" column="level" javaType="string" jdbcType="VARCHAR" />
+		<result property="isLast" column="is_last" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="latitude" column="latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="location" column="location" javaType="string" jdbcType="VARCHAR" />
+		<result property="spellName" column="spell_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="firSpellName" column="fir_spell_name" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 收货地址 -->
+	<resultMap type="com.h2y.os.entity.ReceiveAddress" id="receiveaddressDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="memberId" column="member_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneId" column="zone_id" javaType="long" jdbcType="BIGINT" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneName" column="zone_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="latitude" column="latitude" javaType="decimal" jdbcType="DECIMAL" />
+		<result property="receiverName" column="receiver_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMobile" column="receiver_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverTelephone" column="receiver_telephone" javaType="string" jdbcType="VARCHAR" />
+		<result property="receiverMail" column="receiver_mail" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="isDefault" column="is_default" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 部门映射 -->
+	<resultMap type="com.h2y.os.entity.SysDepartment" id="sysdepartmentDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="deptCode" column="dept_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="parentId" column="parent_id" javaType="long" jdbcType="BIGINT" />
+		<result property="deptLeader" column="dept_leader" javaType="long" jdbcType="BIGINT" />
+		<result property="deptName" column="dept_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="deptShortName" column="dept_short_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="deptDesc" column="dept_desc" javaType="string" jdbcType="VARCHAR" />
+		<result property="deptOrd" column="dept_ord" javaType="long" jdbcType="BIGINT" />
+		<result property="deptType" column="dept_type" javaType="long" jdbcType="BIGINT" />
+		<result property="ifDelete" column="if_delete" javaType="long" jdbcType="BIGINT" />
+		<result property="position" column="position" javaType="string" jdbcType="VARCHAR" />
+		<result property="gpsLongitude" column="gps_longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="gpsLatitude" column="gps_latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="reverse1" column="reverse_1" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse2" column="reverse_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="ifHasShop" column="if_has_shop" javaType="long" jdbcType="BIGINT" />
+	</resultMap>
+	
+	<!-- 会员信息 -->
+	<resultMap type="com.h2y.os.entity.MemberUser" id="memberuserDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="password" column="password" javaType="string" jdbcType="VARCHAR" />
+		<result property="realName" column="real_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="nickName" column="nick_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="sex" column="sex" javaType="string" jdbcType="VARCHAR" />
+		<result property="birDate" column="bir_date" javaType="string" jdbcType="VARCHAR" />
+		<result property="idCard" column="id_card" javaType="string" jdbcType="VARCHAR" />
+		<result property="mailAdd" column="mail_add" javaType="string" jdbcType="VARCHAR" />
+		<result property="telPhone" column="tel_phone" javaType="string" jdbcType="VARCHAR" />
+		<result property="zone" column="zone" javaType="string" jdbcType="VARCHAR" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="qrPath" column="qr_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="qrRelPath" column="qr_rel_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="uuid" column="uuid" javaType="string" jdbcType="VARCHAR" />
+		<result property="headPath" column="head_path" javaType="string" jdbcType="VARCHAR" />
+		<result property="levelId" column="level_id" javaType="long" jdbcType="BIGINT" />
+		<result property="openId" column="open_id" javaType="string" jdbcType="VARCHAR" />
+		<result property="regDevice" column="reg_device" javaType="string" jdbcType="VARCHAR" />
+		<result property="regSource" column="reg_source" javaType="string" jdbcType="VARCHAR" />
+		<result property="loginType" column="login_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="loginDate" column="login_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="type" column="type" javaType="int" jdbcType="INTEGER" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="iosPushCode" column="ios_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="androidPushCode" column="android_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="isAgreement" column="is_agreement" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 配送员映射 -->
+	<resultMap type="com.h2y.os.entity.DeliveryUser" id="deliveryuserDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="deptId" column="dept_id" javaType="long" jdbcType="BIGINT" />
+		<result property="shopId" column="shop_id" javaType="long" jdbcType="BIGINT" />
+		<result property="name" column="name" javaType="string" jdbcType="VARCHAR" />
+		<result property="password" column="password" javaType="string" jdbcType="VARCHAR" />
+		<result property="mobile" column="mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="latitude" column="latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="longitude" column="longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="address" column="address" javaType="string" jdbcType="VARCHAR" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="checkStatus" column="check_status" javaType="int" jdbcType="INTEGER" />
+		<result property="workStatus" column="work_status" javaType="int" jdbcType="INTEGER" />
+		<result property="loginType" column="login_type" javaType="int" jdbcType="INTEGER" />
+		<result property="workType" column="work_type" javaType="int" jdbcType="INTEGER" />
+		<result property="registerType" column="register_type" javaType="int" jdbcType="INTEGER" />
+		<result property="iosPushCode" column="ios_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="androidPushCode" column="android_push_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 仓库映射 -->
+	<resultMap type="com.h2y.os.entity.Storehouse" id="storehouseDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="type" column="type" javaType="int" jdbcType="INTEGER" />
+		<result property="storeName" column="store_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="storeSpeName" column="store_spe_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="storeFirSpeName" column="store_fir_spe_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="status" column="status" javaType="int" jdbcType="INTEGER" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitType" column="unit_type" javaType="int" jdbcType="INTEGER" />
+		<result property="zoneCode" column="zone_code" javaType="string" jdbcType="VARCHAR" />
+		<result property="shopId" column="shop_id" javaType="long" jdbcType="BIGINT" />
+		<result property="parentType" column="parent_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="longitude" column="longitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="latitude" column="latitude" javaType="double" jdbcType="DOUBLE" />
+		<result property="zoneDetail" column="zone_detail" javaType="string" jdbcType="VARCHAR" />
+		<result property="telePhone" column="tele_phone" javaType="string" jdbcType="VARCHAR" />
+		<result property="principal" column="principal" javaType="string" jdbcType="VARCHAR" />
+		<result property="principalMobile" column="principal_mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="memo" column="memo" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3stcode" column="s3stcode" javaType="string" jdbcType="VARCHAR" />
+		<result property="s3createdate" column="s3createdate" javaType="date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<!-- 推送对象映射 -->
+	<resultMap type="com.h2y.entity.PushToData" id="pushToDataMap">
+		<result property="loginType" column="login_type" javaType="string" jdbcType="VARCHAR" />
+		<result property="mto" column="mto" javaType="string" jdbcType="VARCHAR" />
+		<result property="pushcode" column="pushcode" javaType="string" jdbcType="VARCHAR" />
+		<result property="tag" column="tag" javaType="int" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap type="com.h2y.os.entity.SysUser" id="sysuserDaoMap">
+		<result property="id" column="id" javaType="long" jdbcType="BIGINT" />
+		<result property="unitId" column="unit_id" javaType="long" jdbcType="BIGINT" />
+		<result property="userName" column="user_name" javaType="string" jdbcType="VARCHAR" />
+		<result property="account" column="account" javaType="string" jdbcType="VARCHAR" />
+		<result property="password" column="password" javaType="string" jdbcType="VARCHAR" />
+		<result property="mobile" column="mobile" javaType="string" jdbcType="VARCHAR" />
+		<result property="email" column="email" javaType="string" jdbcType="VARCHAR" />
+		<result property="userCord" column="user_cord" javaType="string" jdbcType="VARCHAR" />
+		<result property="updateDate" column="update_date" javaType="date" jdbcType="TIMESTAMP" />
+		<result property="ifLock" column="if_lock" javaType="long" jdbcType="BIGINT" />
+		<result property="ifSys" column="if_sys" javaType="long" jdbcType="BIGINT" />
+		<result property="ifDelete" column="if_delete" javaType="long" jdbcType="BIGINT" />
+		<result property="userOrd" column="user_ord" javaType="long" jdbcType="BIGINT" />
+		<result property="reverse1" column="reverse_1" javaType="long" jdbcType="BIGINT" />
+		<result property="reverse2" column="reverse_2" javaType="string" jdbcType="VARCHAR" />
+		<result property="reverse3" column="reverse_3" javaType="string" jdbcType="VARCHAR" />
+		<result property="xghusercode" column="xghusercode" javaType="string" jdbcType="VARCHAR" />
+		<result property="xghcreatedate" column="xghcreatedate" javaType="date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="getListByZoneCodeAndUnitType" parameterType="hashmap"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where zone_code = #{zoneCode} and unit_type = #{unitType}
+	</select>
+	
+	<select id="getZoneByCode" parameterType="string" resultMap="zoneDaoMap">
+		select * from tb_zone where code = #{code}
+	</select>
+	
+	<select id="getReceiveAddress" parameterType="long" resultMap="receiveaddressDaoMap">
+		select * from tb_receive_address where id = #{id}
+	</select>
+	
+	<select id="getVitualShop" parameterType="long" resultMap="sysdepartmentDaoMap">
+		SELECT * FROM tb_sys_department where dept_type = 1 and reverse_1 = 'virtual' and if_delete = 0 and unit_id = #{unitId} limit 0,1
+	</select>
+
+	
+	<select id="getNearShop" parameterType="hashmap" resultMap="sysdepartmentDaoMap">
+		SELECT 
+			shop.*, 
+			getDistance(gps_latitude,gps_longitude,#{latitude},#{longitude}) AS distance 
+		FROM 
+			tb_sys_department shop 
+		where shop.if_delete = 0 
+		and shop.reverse_1 &lt;&gt; 'virtual'
+		and shop.id in 
+		<foreach collection="shopIds" item="shopId" open="(" separator="," close=")"> 
+			#{shopId} 
+		</foreach>
+		order by distance LIMIT 0,1
+	</select>
+	
+	
+	<select id="getMemberUser" parameterType="long"
+		resultMap="memberuserDaoMap">
+		select * from tb_member_user where id = #{id}
+	</select>
+	
+	<select id="getMemberUserByAccount" parameterType="string"
+		resultMap="memberuserDaoMap">
+		select * from tb_member_user where account = #{account}
+	</select>
+	
+	
+	<select id="getDeliveryer" parameterType="long" resultMap="deliveryuserDaoMap">
+		select * from tb_delivery_user where id = #{id}
+	</select>
+	
+	<select id="getSysUnits" parameterType="long"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where id = #{id}
+	</select>
+	
+	<select id="getStorehouseByShopId" parameterType="long"  resultMap="storehouseDaoMap">
+		SELECT * FROM tb_storehouse where shop_id = #{shopId} and parent_type = 'shop' limit 0,1
+	</select>
+	
+	
+	<select id="getMemberRefRtAccount" parameterType="hashmap"  resultType="string">
+		SELECT account FROM tb_member_ref_rt where user_id = #{memberId} and ref_level = #{refLevel} limit 0,1
+	</select>
+	
+	
+	<select id="getPushDeliveryList" parameterType="hashmap" resultMap="pushToDataMap">
+		select d.* from (
+		SELECT 
+			du.id as mto, 
+			case 
+			when du.login_type = 2 then '${androidDelivery}'
+			else '${iosDelivery}'
+			end as login_type,
+			case 
+			when du.login_type = 2 then android_push_code
+			else ios_push_code 
+			end as pushcode,
+			getDistance(du.latitude,du.longitude,#{latitude},#{longitude}) AS distance 
+		FROM 
+			tb_delivery_user du 
+		where du.work_status=1
+		and du.account in 
+		<foreach collection="deliveryAcccoutList" item="deliveryAcccout" open="(" separator="," close=")"> 
+			#{deliveryAcccout}
+		</foreach>
+		) d where d.distance &lt; #{xKm} and !ISNULL(d.pushcode) and d.pushcode != '' order by d.distance LIMIT 0,${yPeople};
+	</select>
+	
+	<select id="getPushShopList" parameterType="hashmap" resultMap="pushToDataMap">
+		SELECT
+			CONCAT('12',u.account,'@',d.unit_id) AS mto,
+			'' AS pushcode,
+			'${pcApp}' AS login_type
+		FROM
+			tb_sys_department d
+			join tb_sys_dept_user du ON d.id = du.dept_id
+			join tb_sys_user u ON du.user_id = u.id
+		WHERE
+			d.unit_id =  #{unitId} and d.dept_type = 1 and d.if_delete = 0 and u.if_delete = 0
+	</select>
+	
+	<select id="getVirtualShopStorehouseRows" parameterType="long"  resultType="long">
+		SELECT
+			count(id)
+		FROM
+			tb_storehouse
+		WHERE
+			shop_id IN(
+				SELECT
+					id
+				FROM
+					tb_sys_department
+				WHERE
+					unit_id = #{unitId}
+				AND dept_type = 1
+				AND reverse_1 = 'virtual'
+				AND if_delete = 0
+			)
+	</select>
+	
+	<!-- 根据id获取该活动 -->
+	<select id="getCommonActivityById" parameterType="long"  resultType="hashmap">
+		select * from tb_common_activity where id = #{dataId}
+	</select>
+	
+	<select id="getSysUserByDeptId" parameterType="long" resultMap="sysuserDaoMap">
+		select * from tb_sys_user where if_delete = 0 and id in (select user_id from tb_sys_dept_user where dept_id = #{deptId} ) limit 0,1;
+	</select>
+	
+	<!-- 根据用户id获取当前用户 -->
+	<select id="getSysUserById" parameterType="long" resultMap="sysuserDaoMap">
+		select * from tb_sys_user where id = #{userId};
+	</select>
+	
+	<select id="getUnitIdsByDeliveryAccount" parameterType="string" resultType="long">
+		SELECT DISTINCT unit_id FROM tb_delivery_user_shop_rt where account = #{account};
+	</select>
+	
+	<select id="getDeliveryAccountsByUnitId" parameterType="long" resultType="string">
+		SELECT DISTINCT account FROM `tb_delivery_user_shop_rt` where unit_id = #{unitId};
+	</select>
+	
+	<select id="getSysUnitsByDomain" parameterType="string"  resultMap="sysunitsDaoMap">
+		SELECT * FROM tb_sys_units where unit_domain = #{unitDomain}
+	</select>
+	
+</mapper>

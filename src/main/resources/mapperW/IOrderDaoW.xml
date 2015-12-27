@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.h2y.os.dao.write.IOrderDaoW">
+
+	<insert id="add" parameterType="com.h2y.os.entity.Order">
+		<selectKey keyProperty="id" resultType="long" order="AFTER"> 
+			SELECT max(id)  AS value  from tb_order 
+		</selectKey>  
+		insert into tb_order
+		(
+		order_no,
+		order_unique,
+		order_longitude,
+		order_latitude,
+		order_position,
+		order_os,
+		order_osv,
+		order_appv,
+		goods_count,
+		goods_amount,
+		goods_transport_amount,
+		unit_id,
+		unit_type,
+		unit_name,
+		unit_short_name,
+		storehouse_id,
+		storehouse_name,
+		shop_id,
+		shop_name,
+		shop_longitude,
+		shop_latitude,
+		shop_type,
+		shop_address,
+		member_id,
+		member_account,
+		receiver_address_id,
+		receiver_address,
+		receiver_longitude,
+		receiver_latitude,
+		receiver_name,
+		receiver_mobile,
+		receiver_telephone,
+		receiver_mail,
+		create_date,
+		order_status,
+		deliveryer_status,
+		receiver_status,
+		deliveryer_id,
+		deliveryer_name,
+		deliveryer_mobile,
+		deliveryer_date,
+		is_pay,
+		pay_type,
+		pay_account,
+		order_category,
+		receive_code,
+		vip_coin,
+		coin_amount,
+		real_amount,
+		is_child,
+		s3ordercode,
+		s3ordercode2,
+		s3createdate,
+		s3op,
+		s3ucode,
+		s3stcode,
+		zone_code,
+		is_comment,
+		is_coupons,
+		coupons_amount,
+		is_has_count,
+		refund_amount,
+		is_refund,
+		trade_no,
+		trade_data1,
+		trade_data2,
+		trade_data3,
+		refund_batch_no,
+		user_id
+		)
+		values (
+		#{orderNo,jdbcType=VARCHAR},
+		#{orderUnique,jdbcType=VARCHAR},
+		#{orderLongitude,jdbcType=DECIMAL},
+		#{orderLatitude,jdbcType=DECIMAL},
+		#{orderPosition,jdbcType=VARCHAR},
+		#{orderOs,jdbcType=VARCHAR},
+		#{orderOsv,jdbcType=VARCHAR},
+		#{orderAppv,jdbcType=VARCHAR},
+		#{goodsCount,jdbcType=INTEGER},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{goodsTransportAmount,jdbcType=DOUBLE},
+		#{unitId,jdbcType=BIGINT},
+		#{unitType,jdbcType=BIGINT},
+		#{unitName,jdbcType=VARCHAR},
+		#{unitShortName,jdbcType=VARCHAR},
+		#{storehouseId,jdbcType=BIGINT},
+		#{storehouseName,jdbcType=VARCHAR},
+		#{shopId,jdbcType=BIGINT},
+		#{shopName,jdbcType=VARCHAR},
+		#{shopLongitude,jdbcType=DECIMAL},
+		#{shopLatitude,jdbcType=DECIMAL},
+		#{shopType,jdbcType=VARCHAR},
+		#{shopAddress,jdbcType=VARCHAR},
+		#{memberId,jdbcType=VARCHAR},
+		#{memberAccount,jdbcType=VARCHAR},
+		#{receiverAddressId,jdbcType=BIGINT},
+		#{receiverAddress,jdbcType=VARCHAR},
+		#{receiverLongitude,jdbcType=DECIMAL},
+		#{receiverLatitude,jdbcType=DECIMAL},
+		#{receiverName,jdbcType=VARCHAR},
+		#{receiverMobile,jdbcType=VARCHAR},
+		#{receiverTelephone,jdbcType=VARCHAR},
+		#{receiverMail,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{orderStatus,jdbcType=INTEGER},
+		#{deliveryerStatus,jdbcType=INTEGER},
+		#{receiverStatus,jdbcType=INTEGER},
+		#{deliveryerId,jdbcType=BIGINT},
+		#{deliveryerName,jdbcType=VARCHAR},
+		#{deliveryerMobile,jdbcType=VARCHAR},
+		#{deliveryerDate,jdbcType=TIMESTAMP},
+		#{isPay,jdbcType=INTEGER},
+		#{payType,jdbcType=INTEGER},
+		#{payAccount,jdbcType=VARCHAR},
+		#{orderCategory,jdbcType=INTEGER},
+		#{receiveCode,jdbcType=VARCHAR},
+		#{vipCoin,jdbcType=DOUBLE},
+		#{coinAmount,jdbcType=DOUBLE},
+		#{realAmount,jdbcType=DOUBLE},
+		#{isChild,jdbcType=INTEGER},
+		#{s3ordercode,jdbcType=VARCHAR},
+		#{s3ordercode2,jdbcType=VARCHAR},
+		#{s3createdate,jdbcType=TIMESTAMP},
+		#{s3op,jdbcType=VARCHAR},
+		#{s3ucode,jdbcType=VARCHAR},
+		#{s3stcode,jdbcType=VARCHAR},
+		#{zoneCode,jdbcType=VARCHAR},
+		#{isComment,jdbcType=INTEGER},
+		#{isCoupons,jdbcType=INTEGER},
+		#{couponsAmount,jdbcType=DOUBLE},
+		#{isHasCount,jdbcType=INTEGER},
+		#{refundAmount,jdbcType=DOUBLE},
+		#{isRefund,jdbcType=INTEGER},
+		#{tradeNo,jdbcType=VARCHAR},
+		#{tradeData1,jdbcType=VARCHAR},
+		#{tradeData2,jdbcType=VARCHAR},
+		#{tradeData3,jdbcType=VARCHAR},
+		#{refundBatchNo,jdbcType=VARCHAR},
+		#{userId,jdbcType=BIGINT}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.h2y.os.entity.Order">
+		update tb_order
+		set
+		order_no = #{orderNo,jdbcType=VARCHAR},
+		order_unique = #{orderUnique,jdbcType=VARCHAR},
+		order_longitude = #{orderLongitude,jdbcType=DECIMAL},
+		order_latitude = #{orderLatitude,jdbcType=DECIMAL},
+		order_position = #{orderPosition,jdbcType=VARCHAR},
+		order_os = #{orderOs,jdbcType=VARCHAR},
+		order_osv = #{orderOsv,jdbcType=VARCHAR},
+		order_appv = #{orderAppv,jdbcType=VARCHAR},
+		goods_count = #{goodsCount,jdbcType=INTEGER},
+		goods_amount = #{goodsAmount,jdbcType=DOUBLE},
+		goods_transport_amount = #{goodsTransportAmount,jdbcType=DOUBLE},
+		unit_id = #{unitId,jdbcType=BIGINT},
+		unit_type = #{unitType,jdbcType=BIGINT},
+		unit_name = #{unitName,jdbcType=VARCHAR},
+		unit_short_name = #{unitShortName,jdbcType=VARCHAR},
+		storehouse_id = #{storehouseId,jdbcType=BIGINT},
+		storehouse_name = #{storehouseName,jdbcType=VARCHAR},
+		shop_id = #{shopId,jdbcType=BIGINT},
+		shop_name = #{shopName,jdbcType=VARCHAR},
+		shop_longitude = #{shopLongitude,jdbcType=DECIMAL},
+		shop_latitude = #{shopLatitude,jdbcType=DECIMAL},
+		shop_type = #{shopType,jdbcType=VARCHAR},
+		shop_address = #{shopAddress,jdbcType=VARCHAR},
+		member_id = #{memberId,jdbcType=VARCHAR},
+		member_account = #{memberAccount,jdbcType=VARCHAR},
+		receiver_address_id = #{receiverAddressId,jdbcType=BIGINT},
+		receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+		receiver_longitude = #{receiverLongitude,jdbcType=DECIMAL},
+		receiver_latitude = #{receiverLatitude,jdbcType=DECIMAL},
+		receiver_name = #{receiverName,jdbcType=VARCHAR},
+		receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+		receiver_telephone = #{receiverTelephone,jdbcType=VARCHAR},
+		receiver_mail = #{receiverMail,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		order_status = #{orderStatus,jdbcType=INTEGER},
+		deliveryer_status = #{deliveryerStatus,jdbcType=INTEGER},
+		receiver_status = #{receiverStatus,jdbcType=INTEGER},
+		deliveryer_id = #{deliveryerId,jdbcType=BIGINT},
+		deliveryer_name = #{deliveryerName,jdbcType=VARCHAR},
+		deliveryer_mobile = #{deliveryerMobile,jdbcType=VARCHAR},
+		deliveryer_date = #{deliveryerDate,jdbcType=TIMESTAMP},
+		is_pay = #{isPay,jdbcType=INTEGER},
+		pay_type = #{payType,jdbcType=INTEGER},
+		pay_account = #{payAccount,jdbcType=VARCHAR},
+		order_category = #{orderCategory,jdbcType=INTEGER},
+		receive_code = #{receiveCode,jdbcType=VARCHAR},
+		vip_coin = #{vipCoin,jdbcType=DOUBLE},
+		coin_amount = #{coinAmount,jdbcType=DOUBLE},
+		real_amount = #{realAmount,jdbcType=DOUBLE},
+		is_child = #{isChild,jdbcType=INTEGER},
+		s3ordercode = #{s3ordercode,jdbcType=VARCHAR},
+		s3ordercode2 = #{s3ordercode2,jdbcType=VARCHAR},
+		s3createdate = #{s3createdate,jdbcType=TIMESTAMP},
+		s3op = #{s3op,jdbcType=VARCHAR},
+		s3ucode = #{s3ucode,jdbcType=VARCHAR},
+		s3stcode = #{s3stcode,jdbcType=VARCHAR},
+		zone_code = #{zoneCode,jdbcType=VARCHAR},
+		is_comment = #{isComment,jdbcType=INTEGER},
+		is_coupons = #{isCoupons,jdbcType=INTEGER},
+		coupons_amount = #{couponsAmount,jdbcType=DOUBLE},
+		is_has_count = #{isHasCount,jdbcType=INTEGER},
+		refund_amount = #{refundAmount,jdbcType=DOUBLE},
+		is_refund = #{isRefund,jdbcType=INTEGER},
+		trade_no = #{tradeNo,jdbcType=VARCHAR},
+		trade_data1 = #{tradeData1,jdbcType=VARCHAR},
+		trade_data2 = #{tradeData2,jdbcType=VARCHAR},
+		trade_data3 = #{tradeData3,jdbcType=VARCHAR},
+		refund_batch_no = #{refundBatchNo,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=BIGINT}
+		where id = #{id}
+	</update>
+	
+	<update id="updateComment" parameterType="string">
+		update tb_order
+		set
+		is_comment = 1
+		where order_no = #{orderNo}
+	</update>
+	
+
+	<delete id="delete" parameterType="com.h2y.os.entity.Order">
+		delete from
+		tb_order
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="deleteById" parameterType="long">
+		delete from
+		tb_order
+		where
+		id = #{id} 
+	</delete>
+
+	<delete id="updateShoppingCartStatusByIds" parameterType="hashmap">
+		delete from tb_shopping_cart
+		where id in
+		<foreach collection="ids" item="id" open="(" separator=","
+			close=")"> #{id} 
+		</foreach> 
+	</delete>
+	
+	<insert id="addHis" parameterType="com.h2y.os.entity.Order">
+		insert into tb_order_hi
+		(
+		id,
+		order_no,
+		order_unique,
+		order_longitude,
+		order_latitude,
+		order_position,
+		order_os,
+		order_osv,
+		order_appv,
+		goods_count,
+		goods_amount,
+		goods_transport_amount,
+		unit_id,
+		unit_type,
+		unit_name,
+		unit_short_name,
+		storehouse_id,
+		storehouse_name,
+		shop_id,
+		shop_name,
+		shop_longitude,
+		shop_latitude,
+		shop_type,
+		shop_address,
+		member_id,
+		member_account,
+		receiver_address_id,
+		receiver_address,
+		receiver_longitude,
+		receiver_latitude,
+		receiver_name,
+		receiver_mobile,
+		receiver_telephone,
+		receiver_mail,
+		create_date,
+		order_status,
+		deliveryer_status,
+		receiver_status,
+		deliveryer_id,
+		deliveryer_name,
+		deliveryer_mobile,
+		deliveryer_date,
+		is_pay,
+		pay_type,
+		pay_account,
+		order_category,
+		receive_code,
+		vip_coin,
+		coin_amount,
+		real_amount,
+		is_child,
+		s3ordercode,
+		s3ordercode2,
+		s3createdate,
+		s3op,
+		s3ucode,
+		s3stcode,
+		zone_code,
+		is_comment,
+		is_coupons,
+		coupons_amount,
+		is_has_count,
+		refund_amount,
+		is_refund,
+		trade_no,
+		trade_data1,
+		trade_data2,
+		trade_data3,
+		refund_batch_no,
+		user_id
+		)
+		values (
+		#{id,jdbcType=BIGINT},
+		#{orderNo,jdbcType=VARCHAR},
+		#{orderUnique,jdbcType=VARCHAR},
+		#{orderLongitude,jdbcType=DECIMAL},
+		#{orderLatitude,jdbcType=DECIMAL},
+		#{orderPosition,jdbcType=VARCHAR},
+		#{orderOs,jdbcType=VARCHAR},
+		#{orderOsv,jdbcType=VARCHAR},
+		#{orderAppv,jdbcType=VARCHAR},
+		#{goodsCount,jdbcType=INTEGER},
+		#{goodsAmount,jdbcType=DOUBLE},
+		#{goodsTransportAmount,jdbcType=DOUBLE},
+		#{unitId,jdbcType=BIGINT},
+		#{unitType,jdbcType=BIGINT},
+		#{unitName,jdbcType=VARCHAR},
+		#{unitShortName,jdbcType=VARCHAR},
+		#{storehouseId,jdbcType=BIGINT},
+		#{storehouseName,jdbcType=VARCHAR},
+		#{shopId,jdbcType=BIGINT},
+		#{shopName,jdbcType=VARCHAR},
+		#{shopLongitude,jdbcType=DECIMAL},
+		#{shopLatitude,jdbcType=DECIMAL},
+		#{shopType,jdbcType=VARCHAR},
+		#{shopAddress,jdbcType=VARCHAR},
+		#{memberId,jdbcType=VARCHAR},
+		#{memberAccount,jdbcType=VARCHAR},
+		#{receiverAddressId,jdbcType=BIGINT},
+		#{receiverAddress,jdbcType=VARCHAR},
+		#{receiverLongitude,jdbcType=DECIMAL},
+		#{receiverLatitude,jdbcType=DECIMAL},
+		#{receiverName,jdbcType=VARCHAR},
+		#{receiverMobile,jdbcType=VARCHAR},
+		#{receiverTelephone,jdbcType=VARCHAR},
+		#{receiverMail,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{orderStatus,jdbcType=INTEGER},
+		#{deliveryerStatus,jdbcType=INTEGER},
+		#{receiverStatus,jdbcType=INTEGER},
+		#{deliveryerId,jdbcType=BIGINT},
+		#{deliveryerName,jdbcType=VARCHAR},
+		#{deliveryerMobile,jdbcType=VARCHAR},
+		#{deliveryerDate,jdbcType=TIMESTAMP},
+		#{isPay,jdbcType=INTEGER},
+		#{payType,jdbcType=INTEGER},
+		#{payAccount,jdbcType=VARCHAR},
+		#{orderCategory,jdbcType=INTEGER},
+		#{receiveCode,jdbcType=VARCHAR},
+		#{vipCoin,jdbcType=DOUBLE},
+		#{coinAmount,jdbcType=DOUBLE},
+		#{realAmount,jdbcType=DOUBLE},
+		#{isChild,jdbcType=INTEGER},
+		#{s3ordercode,jdbcType=VARCHAR},
+		#{s3ordercode2,jdbcType=VARCHAR},
+		#{s3createdate,jdbcType=TIMESTAMP},
+		#{s3op,jdbcType=VARCHAR},
+		#{s3ucode,jdbcType=VARCHAR},
+		#{s3stcode,jdbcType=VARCHAR},
+		#{zoneCode,jdbcType=VARCHAR},
+		#{isComment,jdbcType=INTEGER},
+		#{isCoupons,jdbcType=INTEGER},
+		#{couponsAmount,jdbcType=DOUBLE},
+		#{isHasCount,jdbcType=INTEGER},
+		#{refundAmount,jdbcType=DOUBLE},
+		#{isRefund,jdbcType=INTEGER},
+		#{tradeNo,jdbcType=VARCHAR},
+		#{tradeData1,jdbcType=VARCHAR},
+		#{tradeData2,jdbcType=VARCHAR},
+		#{tradeData3,jdbcType=VARCHAR},
+		#{refundBatchNo,jdbcType=VARCHAR},
+		#{userId,jdbcType=BIGINT}
+		)
+	</insert>
+	
+	<delete id="deleteByOrderNo" parameterType="string">
+		delete from
+		tb_order
+		where
+		order_no = #{orderNo} 
+	</delete>
+	
+	
+	<update id="updateIsHasCountByOrderNos" parameterType="hashmap">
+		update tb_order
+		set
+		is_has_count = 1
+		where order_no in
+		<foreach collection="orderNos" item="orderNo" open="(" separator=","
+			close=")"> #{orderNo} 
+		</foreach> 		
+	</update>
+	
+	<update id="updateRefundInfoByTradeNo" parameterType="hashmap">
+		update tb_order
+		set 
+		refund_amount = #{refundAmount},
+		is_refund = 1
+		where trade_no = #{tradeNo} 
+		and refund_batch_no = #{refundBatchNo} 
+	</update>
+	
+	<update id="updateTradeInfoByOrderNo" parameterType="hashmap">
+		update tb_order
+		set 
+		is_pay = 1,
+		trade_no = #{tradeNo},
+		trade_data1 = #{tradeData1},
+		trade_data2 = #{tradeData2},
+		trade_data3 = #{tradeData3}
+		where order_no = #{orderNo}
+	</update>
+	
+	<update id="updateRefundBatchNoByOrderNo" parameterType="hashmap">
+		update tb_order
+		set 
+		refund_batch_no = #{refundBatchNo} 
+		where order_no = #{orderNo}
+	</update>
+	
+</mapper>

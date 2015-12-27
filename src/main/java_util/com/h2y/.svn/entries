@@ -1,0 +1,53 @@
+10
+
+dir
+40
+svn://10.10.10.229/h2yos2/trunk/h2yorsos/src/main/java_util/com/h2y
+svn://10.10.10.229/h2yos2
+
+
+
+2015-04-17T06:12:55.770217Z
+40
+houfl
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+be268d33-d5ca-44ee-a198-c2ee4e5fb03e
+
+
+
+
+
+
+0
+
+entity
+dir
+
+memcached
+dir
+
+object
+dir
+
+security
+dir
+
+spring
+dir
+
+util
+dir
+
